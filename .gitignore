@@ -1,0 +1,7 @@
+*.properties
+*.iml
+/.idea/
+/log/
+/target/
+/.git/
+/out/
