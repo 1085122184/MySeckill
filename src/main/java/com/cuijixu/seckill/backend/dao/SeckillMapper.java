@@ -57,4 +57,6 @@ public interface SeckillMapper {
      * @param paramMap
      */
     void killByProcedure(Map<String, Object> paramMap);
+
+    void decr(long seckillId);
 }

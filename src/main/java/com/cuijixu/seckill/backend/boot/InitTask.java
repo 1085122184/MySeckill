@@ -5,7 +5,6 @@ import com.cuijixu.seckill.backend.constant.RedisKeyPrefix;
 import com.cuijixu.seckill.backend.dao.SeckillMapper;
 import com.cuijixu.seckill.backend.entity.Seckill;
 import com.cuijixu.seckill.backend.mq.MQConsumer;
-import com.cuijixu.seckill.backend.singleton.MyRuntimeSchema;
 import com.cuijixu.seckill.backend.utils.MySchema;
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;

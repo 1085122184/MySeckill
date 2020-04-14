@@ -1,7 +1,7 @@
 package com.cuijixu.seckill.backend.domain;
 
 
-import com.cuijixu.seckill.backend.entity.PayOrder;
+import com.cuijixu.seckill.backend.entity.Pay_order;
 import com.cuijixu.seckill.backend.enums.SeckillStateEnum;
 
 /**
@@ -19,7 +19,7 @@ public class SeckillExecution {
     private String stateInfo;
 
     //秒杀成功对象
-    private PayOrder payOrder;
+    private Pay_order payOrder;
 
     @Override
     public String toString() {
@@ -31,7 +31,7 @@ public class SeckillExecution {
                 '}';
     }
 
-    public SeckillExecution(long seckillId, SeckillStateEnum stateEnum, PayOrder payOrder) {
+    public SeckillExecution(long seckillId, SeckillStateEnum stateEnum, Pay_order payOrder) {
         this.seckillId = seckillId;
         this.state = stateEnum.getState();
         this.stateInfo = stateEnum.getStateInfo();
@@ -68,11 +68,11 @@ public class SeckillExecution {
         this.stateInfo = stateInfo;
     }
 
-    public PayOrder getPayOrder() {
+    public Pay_order getPayOrder() {
         return payOrder;
     }
 
-    public void setPayOrder(PayOrder payOrder) {
+    public void setPayOrder(Pay_order payOrder) {
         this.payOrder = payOrder;
     }
 }

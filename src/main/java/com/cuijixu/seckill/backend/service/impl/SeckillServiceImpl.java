@@ -8,7 +8,7 @@ import com.cuijixu.seckill.backend.dao.cache.RedisDAO;
 import com.cuijixu.seckill.backend.domain.Exposer;
 import com.cuijixu.seckill.backend.domain.SeckillExecution;
 import com.cuijixu.seckill.backend.domain.SeckillMsgBody;
-import com.cuijixu.seckill.backend.entity.PayOrder;
+import com.cuijixu.seckill.backend.entity.Pay_order;
 import com.cuijixu.seckill.backend.entity.Seckill;
 import com.cuijixu.seckill.backend.enums.SeckillStateEnum;
 import com.cuijixu.seckill.backend.exception.SeckillException;
@@ -171,7 +171,7 @@ public class SeckillServiceImpl implements SeckillService {
             mqProducer.send(msgBody);
 
             // 立即返回给客户端，说明秒杀成功了
-            PayOrder payOrder = new PayOrder();
+            Pay_order payOrder = new Pay_order();
             payOrder.setUserPhone(userPhone);
             payOrder.setSeckillId(seckillId);
             payOrder.setState(SeckillStateEnum.ENQUEUE_PRE_SECKILL.getState());
@@ -199,10 +199,10 @@ public class SeckillServiceImpl implements SeckillService {
             logger.info("handleInRedis SECKILLSOLD_OUT. seckillId={},userPhone={}", seckillId, userPhone);
             throw new SeckillException(SeckillStateEnum.SOLD_OUT);
         }
-        if (jedis.sismember(boughtKey, String.valueOf(userPhone))) {
-            logger.info("handleInRedis SECKILL_REPEATED. seckillId={},userPhone={}", seckillId, userPhone);
-            throw new SeckillException(SeckillStateEnum.REPEAT_KILL);
-        }
+//        if (jedis.sismember(boughtKey, String.valueOf(userPhone))) {
+//            logger.info("handleInRedis SECKILL_REPEATED. seckillId={},userPhone={}", seckillId, userPhone);
+//            throw new SeckillException(SeckillStateEnum.REPEAT_KILL);
+//        }
         jedis.decr(inventoryKey);
         jedis.sadd(boughtKey, String.valueOf(userPhone));
         logger.info("handleInRedis_done");
@@ -249,7 +249,7 @@ public class SeckillServiceImpl implements SeckillService {
                         throw new SeckillException(SeckillStateEnum.DB_CONCURRENCY_ERROR);
                     } else {
                         //秒杀成功 commit
-                        PayOrder payOrder = pay_orderMapper.queryByIdWithSeckill(seckillId, userPhone);
+                        Pay_order payOrder = pay_orderMapper.queryByIdWithSeckill(seckillId, userPhone);
                         logger.info("seckill SUCCESS->>>. seckillId={},userPhone={}", seckillId, userPhone);
                         return new SeckillExecution(seckillId, SeckillStateEnum.SUCCESS, payOrder);
                         //return后，事务结束，关闭作用在表seckill上的行锁

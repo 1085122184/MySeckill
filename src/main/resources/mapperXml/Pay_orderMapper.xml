@@ -62,7 +62,7 @@
     insert ignore into pay_order (seckill_id, user_phone, state, create_time)
     values (#{seckillId}, #{userPhone}, 0, #{nowTime})
   </insert>
-  <select id="queryByIdWithSeckill" resultType="PayOrder">
+  <select id="queryByIdWithSeckill" resultType="com.cuijixu.seckill.backend.entity.Pay_order">
     <!-- 根据id查询SuccessKilled并携带Seckill实体 -->
     <!-- 如果告诉MyBatis把结果映射到SuccessKilled同时映射seckill属性 -->
     <!-- 可以自由控制SQL -->
