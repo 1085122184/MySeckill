@@ -94,16 +94,23 @@
     ;
   </update>
 
-  <select id="queryById" resultType="Seckill" parameterType="long">
+  <select id="queryById" resultType="com.cuijixu.seckill.backend.entity.Seckill" parameterType="long">
         select seckill_id,name,inventory,start_time,end_time,create_time,version
         from seckill
         where seckill_id = #{seckillId}
     </select>
 
-  <select id="queryAll" resultType="Seckill">
+  <select id="queryAll" resultType="com.cuijixu.seckill.backend.entity.Seckill">
         select seckill_id,name,inventory,start_time,end_time,create_time,version
         from seckill
         order by create_time desc
         limit #{offset},#{limit}
     </select>
+
+  <update id="decr">
+    update
+    seckill
+    set inventory = inventory - 1
+    where seckill_id = #{seckillId}
+  </update>
 </mapper>

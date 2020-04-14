@@ -3,7 +3,6 @@ package com.cuijixu.seckill.backend.dao.cache;
 import com.cuijixu.seckill.backend.constant.RedisKey;
 import com.cuijixu.seckill.backend.constant.RedisKeyPrefix;
 import com.cuijixu.seckill.backend.entity.Seckill;
-import com.cuijixu.seckill.backend.singleton.MyRuntimeSchema;
 import com.cuijixu.seckill.backend.utils.MySchema;
 import io.protostuff.LinkedBuffer;
 import io.protostuff.ProtostuffIOUtil;

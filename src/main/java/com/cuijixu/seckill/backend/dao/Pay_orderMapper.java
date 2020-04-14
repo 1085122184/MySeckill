@@ -1,6 +1,5 @@
 package com.cuijixu.seckill.backend.dao;
 
-import com.cuijixu.seckill.backend.entity.PayOrder;
 import com.cuijixu.seckill.backend.entity.Pay_order;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -39,5 +38,5 @@ public interface Pay_orderMapper {
      * @param seckillId
      * @return
      */
-    PayOrder queryByIdWithSeckill(@Param("seckillId") long seckillId, @Param("userPhone") long userPhone);
+    Pay_order queryByIdWithSeckill(@Param("seckillId") long seckillId, @Param("userPhone") long userPhone);
 }
